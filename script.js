@@ -2,13 +2,6 @@
 function updateDateTime() {
     const now = new Date();
     
-    // Round down to nearest 5 minutes
-    const minutes = now.getMinutes();
-    const roundedMinutes = Math.floor(minutes / 5) * 5;
-    now.setMinutes(roundedMinutes);
-    now.setSeconds(0);
-    now.setMilliseconds(0);
-    
     // Convert to CET (Central European Time)
     // CET is UTC+1, CEST (summer time) is UTC+2
     const options = {
@@ -16,22 +9,30 @@ function updateDateTime() {
         hour12: false
     };
     
+    // Get the time in Zurich timezone
+    const zurichTime = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Zurich' }));
+    
+    // Round down to nearest 5 minutes
+    const minutes = zurichTime.getMinutes();
+    const roundedMinutes = Math.floor(minutes / 5) * 5;
+    zurichTime.setMinutes(roundedMinutes);
+    zurichTime.setSeconds(0);
+    zurichTime.setMilliseconds(0);
+    
     // Format date
     const dateOptions = {
-        ...options,
         year: 'numeric',
         month: '2-digit',
         day: '2-digit'
     };
-    const dateString = now.toLocaleDateString('en-GB', dateOptions).replace(/\//g, '.');
+    const dateString = zurichTime.toLocaleDateString('en-GB', dateOptions).replace(/\//g, '.');
     
     // Format time (without seconds)
-    const timeOptions = {
-        ...options,
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    const timeString = now.toLocaleTimeString('en-US', timeOptions);
+    const timeString = zurichTime.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false 
+    });
     
     // Update DOM elements
     document.getElementById('date').textContent = dateString;

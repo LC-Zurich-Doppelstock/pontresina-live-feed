@@ -47,9 +47,9 @@ function applyDaylightFilter(time) {
     const hour = time.getHours();
     const img = document.querySelector('.webcam-image');
     
-    // Night (22:00 - 5:59): Lift shadows
+    // Night (22:00 - 5:59): No filter, keep original
     if (hour >= 22 || hour < 6) {
-        img.style.filter = 'url(#lift-shadows) brightness(0.6) contrast(1.1)';
+        img.style.filter = 'none';
     }
     // Dawn (6:00 - 7:59): Gradually lift shadows more
     else if (hour >= 6 && hour < 8) {
@@ -64,8 +64,8 @@ function applyDaylightFilter(time) {
     // Dusk (18:00 - 21:59): Gradually reduce shadow lift
     else if (hour >= 18 && hour < 22) {
         const progress = (hour - 18) / 4;
-        const brightness = 1.0 - progress * 0.4; // 1.0 to 0.6
-        const contrast = 1.2 - progress * 0.1; // 1.2 to 1.1
+        const brightness = 1.0 - progress * 0.3; // 1.0 to 0.7
+        const contrast = 1.2 - progress * 0.2; // 1.2 to 1.0
         img.style.filter = `url(#lift-shadows) brightness(${brightness}) contrast(${contrast})`;
     }
 }

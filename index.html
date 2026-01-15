@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- SVG filter to lift shadows specifically -->
+    <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="lift-shadows">
+                <feComponentTransfer>
+                    <feFuncR type="gamma" amplitude="1" exponent="0.7" offset="0.15"/>
+                    <feFuncG type="gamma" amplitude="1" exponent="0.7" offset="0.15"/>
+                    <feFuncB type="gamma" amplitude="1" exponent="0.7" offset="0.15"/>
+                </feComponentTransfer>
+            </filter>
+        </defs>
+    </svg>
+    
     <div class="webcam-container">
         <div class="webcam-header">
             <span class="location">Pontresina, Switzerland</span>

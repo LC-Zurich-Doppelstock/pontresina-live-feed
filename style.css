@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.webcam-container {
+    width: 80vw;
+    height: 80vh;
+    background: #000;
+    position: relative;
+    margin: 10vh 10vw;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.webcam-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.webcam-header {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #fff;
+    font-size: 24px;
+    z-index: 10;
+}
+
+.location {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.coordinates {
+    display: block;
+    font-size: 24px;
+}
+
+.datetime-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: #fff;
+    text-align: left;
+    z-index: 10;
+    font-size: 24px;
+}
+
+.date {
+    font-size: 24px;
+}
+
+.time {
+    font-size: 24px;
+}
+
+.webcam-footer {
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .webcam-header {
+        font-size: 16px;
+        left: 20px;
+        top: 20px;
+    }
+    
+    .coordinates {
+        font-size: 16px;
+    }
+    
+    .datetime-overlay {
+        font-size: 16px;
+        left: 20px;
+        bottom: 20px;
+    }
+    
+    .date {
+        font-size: 16px;
+    }
+    
+    .time {
+        font-size: 16px;
+    }
+}

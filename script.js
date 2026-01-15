@@ -2,6 +2,13 @@
 function updateDateTime() {
     const now = new Date();
     
+    // Round down to nearest 5 minutes
+    const minutes = now.getMinutes();
+    const roundedMinutes = Math.floor(minutes / 5) * 5;
+    now.setMinutes(roundedMinutes);
+    now.setSeconds(0);
+    now.setMilliseconds(0);
+    
     // Convert to CET (Central European Time)
     // CET is UTC+1, CEST (summer time) is UTC+2
     const options = {
